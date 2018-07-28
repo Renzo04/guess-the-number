@@ -18,6 +18,15 @@ class HumanGame(BaseGame):
         self.highest_number = NUMBERS_RANGE[-1]
         self.lowest_number = NUMBERS_RANGE[0]
 
+    def _check_stored_limits(self):
+        """Verifies that the stored limits are in the range and
+        don\'t overlap each other.
+        """
+        return (self.lowest_number < self.highest_number and
+                self.highest_number > self.lowest_number and
+                self.lowest_number in NUMBERS_RANGE and
+                self.highest_number in NUMBERS_RANGE)
+
     def validate_input(self):
         result = input()
         # Checks if the input is an allowed value.
@@ -50,7 +59,7 @@ class HumanGame(BaseGame):
             NUMBERS_RANGE[0], NUMBERS_RANGE[-1]
         ))
         while True:
-            if self.lowest_number > self.highest_number or self.highest_number < self.lowest_number:
+            if not self._check_stored_limits():
                 # If the user lies with his number, the game ends.
                 raise LieException('Did you lie to me??? I\'m very disappointed...')
             guess = randint(self.lowest_number, self.highest_number)
