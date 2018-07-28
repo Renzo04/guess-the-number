@@ -8,6 +8,7 @@ from ..constants import (
     HIGHER,
     VALID_HUMAN_GAME_INPUTS,
 )
+from ..exceptions import LieException
 
 
 class HumanGame(BaseGame):
@@ -51,10 +52,9 @@ class HumanGame(BaseGame):
         while True:
             if self.lowest_number > self.highest_number or self.highest_number < self.lowest_number:
                 # If the user lies with his number, the game ends.
-                print('Did you lie to me??? I\'m very disappointed...')
-                break
+                raise LieException('Did you lie to me??? I\'m very disappointed...')
             guess = randint(self.lowest_number, self.highest_number)
             guessed = self.check_guess(guess)
             if guessed:
                 # If the user guess the number, the game ends.
-                break
+                return

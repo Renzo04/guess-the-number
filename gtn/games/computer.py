@@ -45,4 +45,4 @@ class ComputerGame(BaseGame):
 
             is_guess_valid = self.check_guess(validated_guess)
             if is_guess_valid:
-                break
+                return
