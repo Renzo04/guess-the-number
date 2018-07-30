@@ -50,6 +50,7 @@ def test_play_with_happy_ending(mock_input, randint_mock):
         50,
         30,
         25,
+        'wrongvalue',
         22,
         20,
     ]
